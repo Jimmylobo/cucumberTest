@@ -8,12 +8,12 @@ public class LoginStepDefs {
     private WebDriver webDriver;
 
     @Given("^browser is opened$")
-    public void openBrowser() {
+    public void openBrowser() throws Throwable{
        webDriver = new FirefoxDriver();
     }
 
     @Given("^(.+) page is opened$")
-    public void openPage(String pageName) {
+    public void openPage(String pageName) throws Throwable{
         String url;
 
         switch(pageName) {
