@@ -1,30 +1,49 @@
 package StepDefs;
 
 import cucumber.api.java.en.Given;
-import org.junit.BeforeClass;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import cucumber.api.java.en.When;
+import org.junit.AfterClass;
+import pageObjects.LoginPage;
 
 import static driver.WebDriverSetup.initDriver;
-import static driver.WebDriverSetup.getDriver;
+import static driver.WebDriverSetup.cleanupDriver;
+import static driver.WebDriverSetup.getCurrentPage;
 
 public class LoginStepDefs {
 
+    @AfterClass
+    public void cleanUp() {
+        //TODO: zrobić, żeby działało
+        cleanupDriver();
+    }
+
     @Given("^browser is opened$")
-    public void openBrowser() throws Throwable{
+    public void openBrowser() throws Throwable {
         initDriver();
     }
 
-    @Given("^(.+) page is opened$")
-    public void openPage(String pageName) throws Throwable{
-        String url;
+    @Given("^WP mail login page is opened$")
+    public void openPage() throws Throwable {
+        new LoginPage().gotoThisPage();
+    }
 
-        switch(pageName) {
-            case "WP mail login": url = "https://poczta.wp.pl/"; break;
-            case "inna strona": url = "bla"; break;
-            default: throw new AssertionError("Incorrect page name provided: " + pageName);
+    @When("^\"(.+)\" field is populated with \"(.+)\"$")
+    public void fillInputField(String field, String value) {
+        assert getCurrentPage() instanceof LoginPage;
+
+        if (field.equals("login lub email")) {
+            LoginPage.typeLogin(value);
+        } else if (field.equals("hasło")) {
+            LoginPage.typePassword(value);
         }
+    }
 
-        getDriver().get(url);
+    @When("^button \"(.+)\" is clicked$")
+    public void clickZaloguj(String label) {
+        assert getCurrentPage() instanceof LoginPage;
+
+        if (label.equals("Zaloguj")) {
+            LoginPage.clickSubmit();
+        }
     }
 }
