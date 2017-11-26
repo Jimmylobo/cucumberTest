@@ -1,15 +1,18 @@
 package StepDefs;
 
 import cucumber.api.java.en.Given;
+import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import static driver.WebDriverSetup.initDriver;
+import static driver.WebDriverSetup.getDriver;
+
 public class LoginStepDefs {
-    private WebDriver webDriver;
 
     @Given("^browser is opened$")
     public void openBrowser() throws Throwable{
-       webDriver = new FirefoxDriver();
+        initDriver();
     }
 
     @Given("^(.+) page is opened$")
@@ -22,6 +25,6 @@ public class LoginStepDefs {
             default: throw new AssertionError("Incorrect page name provided: " + pageName);
         }
 
-        webDriver.get(url);
+        getDriver().get(url);
     }
 }
