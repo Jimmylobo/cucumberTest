@@ -13,7 +13,7 @@ public class LoginStepDefs {
 
     @AfterClass
     public void cleanUp() {
-        //TODO: zrobić, żeby działało
+        //TODO (Jimmy): zrobić, żeby działało
         cleanupDriver();
     }
 
