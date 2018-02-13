@@ -6,15 +6,13 @@ import org.openqa.selenium.WebElement;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static driver.WebDriverSetup.getDriver;
-
 public class LoginPage extends AbstractPageObject {
     private static WebElement loginInput;
     private static WebElement passwordInput;
     private static WebElement zalogujButton;
 
-    private static By loginInputLocator = By.id("login");
-    private static By passwordInputLocator = By.id("password");
+    private static By loginInputSelector = By.id("login");
+    private static By passwordInputSelector = By.id("password");
     private static By zalogujButtonLocator = By.id("btnSubmit");
 
     public LoginPage() {
@@ -26,12 +24,12 @@ public class LoginPage extends AbstractPageObject {
     }
 
     public static void typeLogin(String value) {
-        loginInput = initElement(loginInput, loginInputLocator);
+        loginInput = initElement(loginInput, loginInputSelector);
         loginInput.sendKeys(value);
     }
 
     public static void typePassword(String value) {
-        passwordInput = initElement(passwordInput, passwordInputLocator);
+        passwordInput = initElement(passwordInput, passwordInputSelector);
         passwordInput.sendKeys(value);
     }
 
