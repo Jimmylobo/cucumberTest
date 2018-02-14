@@ -15,9 +15,4 @@ public class AbstractPageObject {
         WebDriverSetup.getDriver().get(pageUrl.toString());
         WebDriverSetup.setCurrentPage(this);
     }
-
-    protected static WebElement initElement(By locator) {
-       return getDriver().findElement(locator);
-
-    }
 }

@@ -1,11 +1,14 @@
 package StepDefs;
 
 import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 
 
+import org.openqa.selenium.NoSuchElementException;
 import pageObjects.LoginPage;
+import pageObjects.MailboxPage;
 
 import static driver.WebDriverSetup.initDriver;
 import static driver.WebDriverSetup.cleanupDriver;
@@ -13,8 +16,8 @@ import static driver.WebDriverSetup.getCurrentPage;
 
 public class LoginStepDefs {
 
-    private final String LOGIN_FIELD_NAME = "login lub email"
-    private final String PASSWORD_FIELD_NAME = "hasło"
+    private final String LOGIN_FIELD_NAME = "login lub email";
+    private final String PASSWORD_FIELD_NAME = "hasło";
 
     @After
     public void cleanUp() {
@@ -22,13 +25,13 @@ public class LoginStepDefs {
         cleanupDriver();
     }
 
-    @Given("^browser is opened$")
-    public void openBrowser() throws Throwable {
+    @Before
+    public void openBrowser(){
         initDriver();
     }
 
     @Given("^WP mail login page is opened$")
-    public void openLoginPage() throws Throwable {
+    public void openLoginPage() {
         new LoginPage().gotoThisPage();
     }
 
@@ -49,22 +52,15 @@ public class LoginStepDefs {
     }
 
     @When("ziutek is logged in")
-    public void ziutekLoggedIn() throws Throwable {
+    public void ziutekLoggedIn() {
 
         final String LOGIN_FIELD_VALUE = "ziutek2137";
         final String PASSWORD_FIELD_VALUE = "qweasd123";
 
         LoginStepDefs ziutek = new LoginStepDefs();
-        ziutek.openBrowser();
         ziutek.openLoginPage();
         ziutek.fillInputField(LOGIN_FIELD_NAME,LOGIN_FIELD_VALUE);
         ziutek.fillInputField(PASSWORD_FIELD_NAME,PASSWORD_FIELD_VALUE);
         ziutek.clickZaloguj();
-
     }
-
-    @When("Folder \"Odebrane\" is bold") {
-
-    }
-
 }

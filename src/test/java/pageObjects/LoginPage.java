@@ -1,7 +1,7 @@
 package pageObjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import utils.WebElementUtil;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -21,14 +21,14 @@ public class LoginPage extends AbstractPageObject {
     }
 
     public static void typeLogin(String value) {
-        initElement(loginInputSelector).sendKeys(value);
+        WebElementUtil.initElement(loginInputSelector).sendKeys(value);
     }
 
     public static void typePassword(String value) {
-       initElement(passwordInputSelector).sendKeys(value);
+       WebElementUtil.initElement(passwordInputSelector).sendKeys(value);
     }
 
     public static void clickSubmit() {
-        initElement(zalogujButtonLocator).click();
+        WebElementUtil.initElement(zalogujButtonLocator).click();
     }
 }
