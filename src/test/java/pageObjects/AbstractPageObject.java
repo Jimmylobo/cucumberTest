@@ -16,10 +16,8 @@ public class AbstractPageObject {
         WebDriverSetup.setCurrentPage(this);
     }
 
-    protected static WebElement initElement(WebElement element, By locator) {
-        if (element == null) {
-            element = getDriver().findElement(locator);
-        }
-        return element;
+    protected static WebElement initElement(By locator) {
+       return getDriver().findElement(locator);
+
     }
 }

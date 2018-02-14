@@ -7,9 +7,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class LoginPage extends AbstractPageObject {
-    private static WebElement loginInput;
-    private static WebElement passwordInput;
-    private static WebElement zalogujButton;
 
     private static By loginInputSelector = By.id("login");
     private static By passwordInputSelector = By.id("password");
@@ -24,17 +21,14 @@ public class LoginPage extends AbstractPageObject {
     }
 
     public static void typeLogin(String value) {
-        loginInput = initElement(loginInput, loginInputSelector);
-        loginInput.sendKeys(value);
+        initElement(loginInputSelector).sendKeys(value);
     }
 
     public static void typePassword(String value) {
-        passwordInput = initElement(passwordInput, passwordInputSelector);
-        passwordInput.sendKeys(value);
+       initElement(passwordInputSelector).sendKeys(value);
     }
 
     public static void clickSubmit() {
-        zalogujButton = initElement(zalogujButton, zalogujButtonLocator);
-        zalogujButton.click();
+        initElement(zalogujButtonLocator).click();
     }
 }
